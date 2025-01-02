@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Upload</title>
+</head>
+<body>
+    <!-- Form for uploading image -->
+    <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">Upload Image:</label>
+        <input type="file" name="image" id="image" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Gallery</h2>
+    <!-- Display images if there are any -->
+    <div>
+        {% for i in gallery_images %}
+        {% if i.feedimage %}
+            <div>
+                <img src="{{ i.feedimage.url }}" alt="Gallery Image" width="300">
+                <a href="{% url 'deletion' i.id %}"><button>delete</button></a>
+            </div>
+        {% else %}
+            <p>No image for this gallery item</p>
+        {% endif %}
+    {% empty %}
+        <p>No images uploaded yet.</p>
+    {% endfor %}
+    </div>
+</body>
+</html>
