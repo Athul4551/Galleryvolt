@@ -31,6 +31,10 @@ def logout_g(request):
     logout(request)
     return redirect(login_user)
 def index(request):
+    if request.user.is_authenticated:
+        feeds = Gallery.objects.filter(User=request.user).order_by('-id')
+        return render(request, "index.html", {"feeds": feeds})
+    return redirect("signup")
     if request.method == 'POST' and 'image' in request.FILES:  # Ensure the 'image' key is in request.FILES
         myimage = request.FILES['image']  # Access the uploaded image from request.FILES
         obj = Gallery(feedimage=myimage)  # Create an instance of Gallery and save the image
@@ -41,7 +45,7 @@ def index(request):
     gallery_images = Gallery.objects.all()
     return render(request, "add.html", {"gallery_images": gallery_images})
 def delete_g(request,id):
-    feeds=Todoitem.objects.filter(pk=id)
+    feeds=Gallery.objects.filter(pk=id)
     feeds.delete()
     return redirect(index)
 
