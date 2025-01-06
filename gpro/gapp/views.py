@@ -4,7 +4,8 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from .models import Gallery
 def main(request):
-    return render(request,'index.html')
+    gallery_images = Gallery.objects.filter(user=request.user)
+    return render(request,'index.html',{"gallery_images": gallery_images})
 def login_user(request):
     if request.POST:
         username=request.POST.get('username')
@@ -34,20 +35,19 @@ def logout_g(request):
 def index(request):
     if request.method == 'POST' and 'image' in request.FILES:  # Ensure the 'image' key is in request.FILES
         myimage = request.FILES['image']  # Access the uploaded image from request.FILES
-        obj = Gallery(feedimage=myimage)  # Create an instance of Gallery and save the image
+        obj = Gallery(feedimage=myimage,user=request.user)  # Create an instance of Gallery and save the image
         obj.save()  # Save the object to the database
         return redirect('image')  # Redirect back to the index page after saving
-
     # Retrieve all gallery images to display
-    gallery_images = Gallery.objects.all()
-    return render(request, "add.html", {"gallery_images": gallery_images})
+    return render(request, "add.html")
 def delete_g(request,id):
     feeds=Gallery.objects.filter(pk=id)
     feeds.delete()
     return redirect(index)
 def add(request):
      return render(request,"add.html")
-
+def register(request):
+     return render(request,"register.html")
 # Create your views here.
 
 

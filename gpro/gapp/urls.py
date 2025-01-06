@@ -12,6 +12,7 @@ urlpatterns = [
    path('add', views.add, name='add'),
    path('index', views.index, name='image'),
    path('deletion/<int:id>',views.delete_g,name='deletion'),
+   path('change',views.register,name='change')
 ]
 
 
