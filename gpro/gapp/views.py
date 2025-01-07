@@ -7,12 +7,15 @@ def main(request):
     gallery_images = Gallery.objects.filter(user=request.user)
     return render(request,'index.html',{"gallery_images": gallery_images})
 def login_user(request):
+    if "username" in request.session:
+        return redirect(main)
     if request.POST:
         username=request.POST.get('username')
         password=request.POST.get('password')
         user=authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
+            request.session["username"]=username
             return redirect(main)
         messages.error(request,"wrong password or username")
         return redirect(login_user)
@@ -31,6 +34,7 @@ def signup(request):
     return render(request,'register.html')
 def logout_g(request):
     logout(request)
+    request.session.flush()
     return redirect(login_user)
 def index(request):
     if request.method == 'POST' and 'image' in request.FILES:  # Ensure the 'image' key is in request.FILES
