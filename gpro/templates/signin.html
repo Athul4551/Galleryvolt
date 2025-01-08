@@ -1,25 +1,49 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="static 'css/signin.css">
 </head>
 <body>
-    <div class="main">
-        <form action="" method="post">
-            {% csrf_token %}
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
-            <input type="submit" value="submit">
-            
-            {% if messeges %}
-            {% for i in messeges %}
-            <p>{{ i }}</p>
-            {% endfor %}
-            {% endif %}
-        </form>
-        <a href="{% url 'change' %}"><button>signup</button></a>
-    </div>
+    <div class="wrapper">
+        <div class="container">
+          <div class="col-left">
+            <div class="login-text">
+              <h2>gallery</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget eros dapibus, ultricies tellus vitae, consectetur tortor. Etiam rutrum placerat
+              </p>
+            </div>
+          </div>
+          <div class="col-right">
+            <div class="login-form">
+              <h2>Login</h2>
+              <form action="" method="post">
+                {% csrf_token %}
+                <p>
+                  <input type="text" placeholder="Username" required>
+                </p>
+                <p>
+                  <input type="password" placeholder="Password" required>
+                </p>
+                <p>
+                  <input class="btn" type="submit" value="submit">
+                </p>
+                <p>
+                  <a href="{% url 'change' %}">Create an account.</a>
+                </p>
+                {% if messeges %}
+                {% for i in messeges %}
+                <p>{{ i }}</p>
+                {% endfor %}
+                {% endif %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
