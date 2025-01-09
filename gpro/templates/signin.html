@@ -5,35 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="static 'css/signin.css">
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container">
-          <div class="col-left">
-            <div class="login-text">
-              <h2>gallery</h2>
-              <p>
+    <div class="wrapper" style=" margin: 0 auto;
+    width: 100%;
+    max-width: 1140px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;">
+        <div class="container" style=" position: relative;
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        display: flex;
+        background: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, .1);">
+          <div class="col-left" style="width: 45%;
+          background: #4CAF50;
+          -webkit-clip-path: polygon(98% 17%, 100% 34%, 98% 51%, 100% 68%, 98% 84%, 100% 100%, 0 100%, 0 0, 100% 0);
+          clip-path: polygon(98% 17%, 100% 34%, 98% 51%, 100% 68%, 98% 84%, 100% 100%, 0 100%, 0 0, 100% 0); width: 55%;
+          padding: 45px 35px;
+          display: flex;">
+            <div class="login-text" style=" position: relative;
+            width: 100%;
+            color: #ffffff;
+            text-align: center;">
+              <h2 style="width: 120px;  margin: 0 0 15px 0;
+              font-size: 30px;
+              font-weight: 700;">gallery</h2>
+              <p style=" margin: 0 0 20px 0;
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 22px;">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget eros dapibus, ultricies tellus vitae, consectetur tortor. Etiam rutrum placerat
               </p>
             </div>
           </div>
-          <div class="col-right">
-            <div class="login-form">
-              <h2>Login</h2>
+          <div class="col-right" style="width: 55%;
+          padding: 45px 35px;
+          display: flex;">
+            <div class="login-form" style="position: relative;
+            width: 100%;
+            color: #666666;  color: #4CAF50;
+            font-size: 14px;
+            text-decoration: none;">
+              <h2 style=" margin: 0 0 15px 0;
+              font-size: 30px;
+              font-weight: 700;">Login</h2>
               <form action="" method="post">
                 {% csrf_token %}
-                <p>
-                  <input type="text" placeholder="Username" required>
+                <p style=" margin: 0 0 20px 0;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 22px;">
+                  <input type="text" placeholder="Username" name="username">
                 </p>
-                <p>
-                  <input type="password" placeholder="Password" required>
+                <p style=" margin: 0 0 20px 0;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 22px;">
+                  <input type="password" placeholder="Password" name="password">
                 </p>
-                <p>
-                  <input class="btn" type="submit" value="submit">
+                <p style=" margin: 0 0 20px 0;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 22px;">
+                  <input class="btn" type="submit" value="submit" style="display: inline-block;
+                  padding: 7px 20px;
+                  font-size: 16px;
+                  letter-spacing: 1px;
+                  text-decoration: none;
+                  border-radius: 5px;
+                  color: white;
+                  outline: none;
+                  border: 1px solid white;
+                  transition: .3s;
+                  -webkit-transition: .3s;
+                  background-color:#4CAF50">
                 </p>
-                <p>
-                  <a href="{% url 'change' %}">Create an account.</a>
+                <p style=" margin: 0 0 20px 0;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 22px;">
+                  <a href="{% url 'change' %}" style="color:#4CAF50; color: #4CAF50;
+                  font-size: 14px;
+                  text-decoration: none;">Create an account.</a>
                 </p>
                 {% if messeges %}
                 {% for i in messeges %}
