@@ -44,6 +44,7 @@ def index(request):
         return redirect('image')  # Redirect back to the index page after saving
     # Retrieve all gallery images to display
     return render(request, "add.html")
+
 def delete_g(request,id):
     feeds=Gallery.objects.filter(pk=id)
     feeds.delete()

@@ -12,9 +12,10 @@
      <a href="{% url 'add'%}">image uploding</a> 
     {% for i in gallery_images %}
      <div>
-        <img src="{{ i.feedimage.url }}" alt="Gallery Image" width="300">
-        <a href="{% url 'deletion' i.id %}"><button>delete</button></a>
+       <img src="{{ i.feedimage.url }}" alt="Gallery Image" width="300">
+        <a href="{% url 'deletion' i.id %}"><button class="btn" >delete</button></a>
     </div>
     {% endfor %}
+    <a href="{% url 'logout' %}"><button>log out</button></a>
 </body>
 </html>
